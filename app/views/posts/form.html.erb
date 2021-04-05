@@ -1,0 +1,14 @@
+<%= form_for @post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <%= f.label "Tags" %>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+    <%= f.label "New Tag" %>
+    <%= f.fields_for :tags, @post.tags.build do |tag| %>
+      <%= tag.label :name %>
+      <%= tag.text_field :name  %>
+    <% end %>
+   <%= f.submit "Create Post"%>
+  <% end %>
